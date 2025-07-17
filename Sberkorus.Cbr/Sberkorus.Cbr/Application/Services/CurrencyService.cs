@@ -44,15 +44,13 @@ namespace Sberkorus.Cbr.Application.Services
             _logger.Information("Запрос курсов валют на дату: {Date}, ISO цифровой код валюты: {CurrencyNumCode}",
                 date.ToDateString(), currencyNumCode);
 
-            throw new Exception("Test");
-            
             var predicate = currencyNumCode.HasValue
                 ? c => c.Code == currencyNumCode.Value
                 : default(Func<CurrencyRate, bool>);
-            
+
             return await GetCurrencyRatesAsync(date, predicate, cancellationToken);
         }
-        
+
         /// <summary>
         /// Получить курсы валют с фильтрацией по символьному коду валюты
         /// </summary>
@@ -69,10 +67,10 @@ namespace Sberkorus.Cbr.Application.Services
             var predicate = currencyCharCode != null
                 ? c => c.CharCode == currencyCharCode
                 : default(Func<CurrencyRate, bool>);
-            
+
             return await GetCurrencyRatesAsync(date, predicate, cancellationToken);
         }
-        
+
         /// <summary>
         /// Получить курсы валют с кэшированием и применением пользовательского предиката
         /// </summary>
@@ -80,14 +78,17 @@ namespace Sberkorus.Cbr.Application.Services
         /// <param name="predicate">Предикат для фильтрации валют</param>
         /// <param name="cancellationToken">Токен отмены</param>
         /// <returns>Курсы валют</returns>
-        private async Task<CurrencyResponse> GetCurrencyRatesAsync(DateTime date, Func<CurrencyRate, bool> predicate = null,
+        private async Task<CurrencyResponse> GetCurrencyRatesAsync(DateTime date,
+            Func<CurrencyRate, bool> predicate = null,
             CancellationToken cancellationToken = default)
         {
             var workingDate = GetWorkingDate(date);
             if (workingDate != date)
             {
-                _logger.Information("Дата запроса курса валюты была изменена на предыдущий рабочий день: {Date}", workingDate);
+                _logger.Information("Дата запроса курса валюты была изменена на предыдущий рабочий день: {Date}",
+                    workingDate);
             }
+
             var cacheKey = GetCacheKey(workingDate);
 
             var cachedRates = await _cacheService.GetAsync<CurrencyResponse>(cacheKey);
@@ -97,22 +98,13 @@ namespace Sberkorus.Cbr.Application.Services
                 return FilterResponse(cachedRates, predicate);
             }
 
-            try
-            {
-                var rates = await _cbrService.GetCurrencyRatesAsync(date, cancellationToken);
+            var rates = await _cbrService.GetCurrencyRatesAsync(date, cancellationToken);
+            await _cacheService.SetAsync(cacheKey, rates, TimeSpan.FromDays(1));
 
-                await _cacheService.SetAsync(cacheKey, rates, TimeSpan.FromDays(1));
+            _logger.Information("Курсы валют успешно получены и сохранены в кэш. Дата: {Date}, количество: {Count}",
+                workingDate, rates.CurrencyRates.Count);
 
-                _logger.Information("Курсы валют успешно получены и сохранены в кэш. Дата: {Date}, количество: {Count}",
-                    workingDate, rates.CurrencyRates.Count);
-
-                return FilterResponse(rates, predicate); 
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex, "Ошибка при получении курсов валют на дату: {Date}", workingDate);
-                throw;
-            }
+            return FilterResponse(rates, predicate);
         }
 
         /// <summary>
@@ -125,7 +117,7 @@ namespace Sberkorus.Cbr.Application.Services
         {
             if (predicate == null)
                 return response;
-                
+
             var filteredCurrencies = response.CurrencyRates
                 .Where(predicate)
                 .ToList();
@@ -151,7 +143,7 @@ namespace Sberkorus.Cbr.Application.Services
 
             return date;
         }
-        
+
         /// <summary>
         /// Формирует ключ для кэширования курсов валют
         /// </summary>

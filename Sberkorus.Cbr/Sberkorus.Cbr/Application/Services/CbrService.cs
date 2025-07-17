@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Extensions.Options;
 using Sberkorus.Cbr.Application.Configuration;
+using Sberkorus.Cbr.Domain.Exceptions;
+using Sberkorus.Cbr.Domain.Exceptions.Abstractions;
 using Sberkorus.Cbr.Domain.Interfaces;
 using Sberkorus.Cbr.Domain.Models;
 using Sberkorus.Cbr.Extensions;
@@ -49,22 +51,37 @@ namespace Sberkorus.Cbr.Application.Services
             _logger.Information("Начало получения курсов валют на дату: {Date}",
                 date.ToDateString());
 
-            var soapRequest = CreateSoapRequest(date);
-            var content = new StringContent(soapRequest, Encoding.UTF8, _options.ContentType);
+            try
+            {
+                var soapRequest = CreateSoapRequest(date);
+                var content = new StringContent(soapRequest, Encoding.UTF8, _options.ContentType);
 
-            var response = await _httpClient.PostAsync(_options.ServiceUrl, content, cancellationToken);
-            _logger.Information("Получен ответ от сервиса. Статус: {StatusCode}", (int)response.StatusCode);
-            response.EnsureSuccessStatusCode();
+                var response = await _httpClient.PostAsync(_options.ServiceUrl, content, cancellationToken);
+                _logger.Information("Получен ответ от сервиса. Статус: {StatusCode}", (int)response.StatusCode);
+                response.EnsureSuccessStatusCode();
 
-            _logger.Debug("Чтение содержимого ответа");
-            var xmlResponse = await response.Content.ReadAsStringAsync();
+                _logger.Debug("Чтение содержимого ответа");
+                var xmlResponse = await response.Content.ReadAsStringAsync();
 
-            _logger.Debug("Парсинг ответа с курсами валют");
-            var result = ParseCurrencyResponse(xmlResponse, date);
+                _logger.Debug("Парсинг ответа с курсами валют");
+                var result = ParseCurrencyResponse(xmlResponse, date);
 
-            _logger.Information("Успешно получены курсы валют на дату: {Date}. Найдено {Count} записей",
-                date.ToDateString(), result.CurrencyRates.Count);
-            return result;
+                _logger.Information("Успешно получены курсы валют на дату: {Date}. Найдено {Count} записей",
+                    date.ToDateString(), result.CurrencyRates.Count);
+                return result;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new ExternalServiceUnavailableException("ЦБ РФ", ex);
+            }
+            catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException)
+            {
+                throw new ExternalServiceUnavailableException("ЦБ РФ (таймаут)", ex);
+            }
+            catch (Exception ex) when (!(ex is BusinessException))
+            {
+                throw new ExternalServiceUnavailableException("Непредвиденная ошибка ЦБ РФ", ex);
+            }
         }
 
         /// <summary>
