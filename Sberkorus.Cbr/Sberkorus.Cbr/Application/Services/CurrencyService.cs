@@ -1,134 +1,133 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Xml;
 using Serilog;
 using Sberkorus.Cbr.Domain.Interfaces;
 using Sberkorus.Cbr.Domain.Models;
+using Sberkorus.Cbr.Extensions;
 
 namespace Sberkorus.Cbr.Application.Services
 {
+    /// <summary>
+    /// Основной сервис для получения курсов валют с кэшированием и фильтрацией
+    /// </summary>
     public class CurrencyService : ICurrencyService
     {
-        private readonly HttpClient _httpClient;
+        private readonly ICbrService _cbrService;
         private readonly ICacheService _cacheService;
         private readonly ILogger _logger;
-        private const string CbrServiceUrl = "https://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
-        
-        public CurrencyService(HttpClient httpClient, ICacheService cacheService, ILogger logger)
+
+        /// <summary>
+        /// Инициализирует новый экземпляр сервиса курсов валют
+        /// </summary>
+        /// <param name="cbrService">Сервис ЦБ РФ</param>
+        /// <param name="cacheService">Сервис кэширования</param>
+        /// <param name="logger">Логгер</param>
+        public CurrencyService(ICbrService cbrService, ICacheService cacheService, ILogger logger)
         {
-            _httpClient = httpClient;
+            _cbrService = cbrService;
             _cacheService = cacheService;
             _logger = logger;
         }
+
+        /// <summary>
+        /// Получить курсы валют с фильтрацией по цифровому коду валюты
+        /// </summary>
+        /// <param name="date">Дата курса</param>
+        /// <param name="currencyNumCode">Цифровой код валюты (ISO 4217)</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Курсы валют</returns>
+        public async Task<CurrencyResponse> GetCurrencyRatesAsync(DateTime date, int? currencyNumCode = null,
+            CancellationToken cancellationToken = default)
+        {
+            _logger.Information("Запрос курсов валют на дату: {Date}, ISO цифровой код валюты: {CurrencyNumCode}",
+                date.ToDateString(), currencyNumCode);
+
+            throw new Exception("Test");
+            
+            var predicate = currencyNumCode.HasValue
+                ? c => c.Code == currencyNumCode.Value
+                : default(Func<CurrencyRate, bool>);
+            
+            return await GetCurrencyRatesAsync(date, predicate, cancellationToken);
+        }
         
-        public async Task<CurrencyResponse> GetCurrencyRatesAsync(DateTime date, int? currencyCode = null)
+        /// <summary>
+        /// Получить курсы валют с фильтрацией по символьному коду валюты
+        /// </summary>
+        /// <param name="date">Дата курса</param>
+        /// <param name="currencyCharCode">Символьный код валюты (ISO 4217)</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Курсы валют</returns>
+        public async Task<CurrencyResponse> GetCurrencyRatesAsync(DateTime date, string currencyCharCode = null,
+            CancellationToken cancellationToken = default)
+        {
+            _logger.Information("Запрос курсов валют на дату: {Date}, ISO символьный код валюты: {CurrencyCharCode}",
+                date.ToDateString(), currencyCharCode);
+
+            var predicate = currencyCharCode != null
+                ? c => c.CharCode == currencyCharCode
+                : default(Func<CurrencyRate, bool>);
+            
+            return await GetCurrencyRatesAsync(date, predicate, cancellationToken);
+        }
+        
+        /// <summary>
+        /// Получить курсы валют с кэшированием и применением пользовательского предиката
+        /// </summary>
+        /// <param name="date">Дата курса</param>
+        /// <param name="predicate">Предикат для фильтрации валют</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Курсы валют</returns>
+        private async Task<CurrencyResponse> GetCurrencyRatesAsync(DateTime date, Func<CurrencyRate, bool> predicate = null,
+            CancellationToken cancellationToken = default)
         {
             var workingDate = GetWorkingDate(date);
-            var cacheKey = $"currency_rates_{workingDate:yyyyMMdd}";
+            if (workingDate != date)
+            {
+                _logger.Information("Дата запроса курса валюты была изменена на предыдущий рабочий день: {Date}", workingDate);
+            }
+            var cacheKey = GetCacheKey(workingDate);
 
-            _logger.Information("Requesting currency rates for date: {Date}, currency code: {CurrencyCode}", 
-                workingDate, currencyCode);
-
-            // Попытка получить из кэша
             var cachedRates = await _cacheService.GetAsync<CurrencyResponse>(cacheKey);
             if (cachedRates != null)
             {
-                _logger.Information("Currency rates found in cache for date: {Date}", workingDate);
-                return FilterByCurrencyCode(cachedRates, currencyCode);
+                _logger.Information("Курсы валют найдены в кэше для даты: {Date}", workingDate);
+                return FilterResponse(cachedRates, predicate);
             }
 
             try
             {
-                var rates = await FetchCurrencyRatesFromCbrAsync(workingDate);
-                
-                // Кэширование на 1 день
+                var rates = await _cbrService.GetCurrencyRatesAsync(date, cancellationToken);
+
                 await _cacheService.SetAsync(cacheKey, rates, TimeSpan.FromDays(1));
-                
-                _logger.Information("Currency rates fetched and cached for date: {Date}, count: {Count}", 
+
+                _logger.Information("Курсы валют успешно получены и сохранены в кэш. Дата: {Date}, количество: {Count}",
                     workingDate, rates.CurrencyRates.Count);
 
-                return FilterByCurrencyCode(rates, currencyCode);
+                return FilterResponse(rates, predicate); 
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to fetch currency rates for date: {Date}", workingDate);
-                throw new InvalidOperationException("Сервис временно недоступен", ex);
+                _logger.Error(ex, "Ошибка при получении курсов валют на дату: {Date}", workingDate);
+                throw;
             }
         }
-        
-        private async Task<CurrencyResponse> FetchCurrencyRatesFromCbrAsync(DateTime date)
-        {
-            var soapRequest = CreateSoapRequest(date);
-            var content = new StringContent(soapRequest, Encoding.UTF8, "application/soap+xml");
 
-            var response = await _httpClient.PostAsync(CbrServiceUrl, content);
-            response.EnsureSuccessStatusCode();
-
-            var xmlResponse = await response.Content.ReadAsStringAsync();
-            return ParseCurrencyResponse(xmlResponse, date);
-        }
-        
-        private string CreateSoapRequest(DateTime date)
+        /// <summary>
+        /// Фильтрует ответ с курсами валют по заданному предикату
+        /// </summary>
+        /// <param name="response">Ответ с курсами валют</param>
+        /// <param name="predicate">Предикат для фильтрации</param>
+        /// <returns>Отфильтрованный ответ</returns>
+        private CurrencyResponse FilterResponse(CurrencyResponse response, Func<CurrencyRate, bool> predicate)
         {
-            return $@"<?xml version=""1.0"" encoding=""utf-8""?>
-<soap12:Envelope xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" 
-                 xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" 
-                 xmlns:soap12=""http://www.w3.org/2003/05/soap-envelope"">
-  <soap12:Body>
-    <GetCursOnDate xmlns=""http://web.cbr.ru/"">
-      <On_date>{date:yyyy-MM-dd}</On_date>
-    </GetCursOnDate>
-  </soap12:Body>
-</soap12:Envelope>";
-        }
-        
-        private CurrencyResponse ParseCurrencyResponse(string xmlResponse, DateTime date)
-        {
-            var doc = new XmlDocument();
-            doc.LoadXml(xmlResponse);
-
-            var currencies = new List<CurrencyRate>();
-            var nodes = doc.GetElementsByTagName("ValuteCursOnDate");
-
-            foreach (XmlNode node in nodes)
-            {
-                var currency = new CurrencyRate
-                {
-                    Name = GetNodeValue(node, "Vname"),
-                    Nominal = decimal.Parse(GetNodeValue(node, "Vnom"), CultureInfo.InvariantCulture),
-                    Rate = decimal.Parse(GetNodeValue(node, "Vcurs"), CultureInfo.InvariantCulture),
-                    Code = int.Parse(GetNodeValue(node, "Vcode")),
-                    CharCode = GetNodeValue(node, "VchCode"),
-                    UnitRate = double.Parse(GetNodeValue(node, "VunitRate"), CultureInfo.InvariantCulture),
-                    Date = date
-                };
-                currencies.Add(currency);
-            }
-
-            return new CurrencyResponse
-            {
-                Date = date,
-                CurrencyRates = currencies
-            };
-        }
-        
-        private string GetNodeValue(XmlNode parentNode, string nodeName)
-        {
-            return parentNode.SelectSingleNode(nodeName)?.InnerText ?? string.Empty;
-        }
-        
-        private CurrencyResponse FilterByCurrencyCode(CurrencyResponse response, int? currencyCode)
-        {
-            if (!currencyCode.HasValue)
+            if (predicate == null)
                 return response;
-
+                
             var filteredCurrencies = response.CurrencyRates
-                .Where(c => c.Code == currencyCode.Value)
+                .Where(predicate)
                 .ToList();
 
             return new CurrencyResponse
@@ -137,14 +136,28 @@ namespace Sberkorus.Cbr.Application.Services
                 CurrencyRates = filteredCurrencies
             };
         }
-        
+
+        /// <summary>
+        /// Преобразует дату к рабочему дню (исключает выходные)
+        /// </summary>
+        /// <param name="date">Исходная дата</param>
+        /// <returns>Ближайший предыдущий рабочий день</returns>
         private DateTime GetWorkingDate(DateTime date)
         {
             while (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
             {
                 date = date.AddDays(-1);
             }
+
             return date;
         }
+        
+        /// <summary>
+        /// Формирует ключ для кэширования курсов валют
+        /// </summary>
+        /// <param name="date">Дата курса</param>
+        /// <returns>Ключ кэша</returns>
+        private string GetCacheKey(DateTime date) =>
+            $"currency_rates_{date:yyyyMMdd}";
     }
 }

@@ -17,6 +17,11 @@ namespace Sberkorus.Cbr
                     true)
                 .AddEnvironmentVariables()
                 .Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
+            
             try
             {
                 Log.Information("Starting Currency Gateway API");
@@ -34,8 +39,7 @@ namespace Sberkorus.Cbr
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog((context, loggerConfig) =>
-                    loggerConfig.ReadFrom.Configuration(context.Configuration))
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

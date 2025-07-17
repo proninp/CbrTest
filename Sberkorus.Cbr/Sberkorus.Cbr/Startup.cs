@@ -1,19 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Sberkorus.Cbr.API.Middleware;
 using Sberkorus.Cbr.Application.Services;
 using Sberkorus.Cbr.Domain.Interfaces;
-using Sberkorus.Cbr.Infrastructure.Configuration;
-using Sberkorus.Cbr.Infrastructure.Services;
+using Sberkorus.Cbr.Extensions;
+using Serilog;
 
 namespace Sberkorus.Cbr
 {
@@ -26,35 +22,18 @@ namespace Sberkorus.Cbr
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<RedisOptions>(Configuration.GetSection(nameof(RedisOptions)));
-
-            services.AddRedis();
-            services.AddScoped<ICacheService, RedisCacheService>();
-            services.AddScoped<ICurrencyService, CurrencyService>();
+            services.AddSingleton(Log.Logger);
             
-            services.AddHttpClient<CurrencyService>(client =>
-            {
-                client.Timeout = TimeSpan.FromSeconds(30);
-                client.DefaultRequestHeaders.Add("SOAPAction", "http://web.cbr.ru/GetCursOnDate");
-            });
+            services.AddRedis(Configuration);
+            services.AddCbrApiService(Configuration);
+            services.AddCurrencyService(Configuration);
             
             services.AddControllers();
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo 
-                { 
-                    Title = "Currency Gateway API", 
-                    Version = "v1",
-                    Description = "API для получения курсов валют ЦБ РФ"
-                });
-            });
+            services.AddSwagger();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -69,12 +48,11 @@ namespace Sberkorus.Cbr
                 c.RoutePrefix = string.Empty; // Swagger UI на корне
             });
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }

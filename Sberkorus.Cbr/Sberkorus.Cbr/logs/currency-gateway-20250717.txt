@@ -41,3 +41,382 @@ System.AggregateException: Some services are not able to be constructed (Error w
    at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
    at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)<---
 
+[2025-07-17 08:27:04.190 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:27:04.309 +03:00 FTL] Application terminated unexpectedly {}
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICacheService Lifetime: Transient ImplementationType: Sberkorus.Cbr.Infrastructure.Services.RedisCacheService': Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.) (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICacheService Lifetime: Transient ImplementationType: Sberkorus.Cbr.Infrastructure.Services.RedisCacheService': Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.DefaultServiceProviderFactory.CreateServiceProvider(IServiceCollection containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Sberkorus.Cbr.Program.Main(String[] args) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Program.cs:line 28
+ ---> (Inner Exception #1) System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)<---
+
+[2025-07-17 08:27:23.982 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:29:52.507 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:33:32.342 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:38:17.268 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:38:17.428 +03:00 FTL] Application terminated unexpectedly {}
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.DefaultServiceProviderFactory.CreateServiceProvider(IServiceCollection containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Sberkorus.Cbr.Program.Main(String[] args) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Program.cs:line 28
+[2025-07-17 08:47:24.809 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:47:24.956 +03:00 FTL] Application terminated unexpectedly {}
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.DefaultServiceProviderFactory.CreateServiceProvider(IServiceCollection containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Sberkorus.Cbr.Program.Main(String[] args) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Program.cs:line 28
+[2025-07-17 08:47:49.801 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:47:49.935 +03:00 FTL] Application terminated unexpectedly {}
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.DefaultServiceProviderFactory.CreateServiceProvider(IServiceCollection containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Sberkorus.Cbr.Program.Main(String[] args) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Program.cs:line 28
+[2025-07-17 08:51:02.723 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:51:02.993 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:51:03.001 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:51:03.002 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:51:03.004 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:51:03.005 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:51:27.270 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:52:03.949 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:52:04.178 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:52:04.184 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:52:04.185 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:52:04.186 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:52:04.188 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:54:51.924 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:56:25.415 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:56:25.643 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:56:25.649 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:56:25.650 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:56:25.651 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:56:25.652 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:57:27.067 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=840 {"ActionId":"7dbe6a89-0c7c-42f3-ac5d-4699f69eda7b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4UQLAKMFO:00000011","RequestPath":"/api/Currency","SpanId":"|545418aa-400551027ac1f11a.","TraceId":"545418aa-400551027ac1f11a","ParentId":""}
+[2025-07-17 08:57:27.077 +03:00 INF] Requesting currency rates for date: "2025-07-17T00:00:00.0000000+03:00", currency code: 840 {"ActionId":"7dbe6a89-0c7c-42f3-ac5d-4699f69eda7b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4UQLAKMFO:00000011","RequestPath":"/api/Currency","SpanId":"|545418aa-400551027ac1f11a.","TraceId":"545418aa-400551027ac1f11a","ParentId":""}
+[2025-07-17 08:57:27.091 +03:00 DBG] Cache miss for key: currency_rates_20250717 {"ActionId":"7dbe6a89-0c7c-42f3-ac5d-4699f69eda7b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4UQLAKMFO:00000011","RequestPath":"/api/Currency","SpanId":"|545418aa-400551027ac1f11a.","TraceId":"545418aa-400551027ac1f11a","ParentId":""}
+[2025-07-17 08:57:27.937 +03:00 DBG] Value cached for key: currency_rates_20250717, expiration: "1.00:00:00" {"ActionId":"7dbe6a89-0c7c-42f3-ac5d-4699f69eda7b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4UQLAKMFO:00000011","RequestPath":"/api/Currency","SpanId":"|545418aa-400551027ac1f11a.","TraceId":"545418aa-400551027ac1f11a","ParentId":""}
+[2025-07-17 08:57:27.944 +03:00 INF] Currency rates fetched and cached for date: "2025-07-17T00:00:00.0000000+03:00", count: 55 {"ActionId":"7dbe6a89-0c7c-42f3-ac5d-4699f69eda7b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4UQLAKMFO:00000011","RequestPath":"/api/Currency","SpanId":"|545418aa-400551027ac1f11a.","TraceId":"545418aa-400551027ac1f11a","ParentId":""}
+[2025-07-17 08:57:42.839 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:59:24.258 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 08:59:24.489 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:59:24.495 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:59:24.496 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:59:24.497 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:59:24.498 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 08:59:44.858 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 09:17:45.991 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 09:17:46.763 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 09:17:46.770 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 09:17:46.771 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 09:17:46.772 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 09:17:46.773 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 09:18:01.156 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=null {"ActionId":"45af395d-5e14-4ba9-a811-5c5eb233b3d5","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4V6J2R4HT:00000005","RequestPath":"/api/Currency","SpanId":"|4ef1e838-4b59a30981189d64.","TraceId":"4ef1e838-4b59a30981189d64","ParentId":""}
+[2025-07-17 09:18:01.166 +03:00 INF] Requesting currency rates for date: "2025-07-17T00:00:00.0000000+03:00", currency code: null {"ActionId":"45af395d-5e14-4ba9-a811-5c5eb233b3d5","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4V6J2R4HT:00000005","RequestPath":"/api/Currency","SpanId":"|4ef1e838-4b59a30981189d64.","TraceId":"4ef1e838-4b59a30981189d64","ParentId":""}
+[2025-07-17 09:18:01.190 +03:00 DBG] Cache hit for key: currency_rates_20250717 {"ActionId":"45af395d-5e14-4ba9-a811-5c5eb233b3d5","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4V6J2R4HT:00000005","RequestPath":"/api/Currency","SpanId":"|4ef1e838-4b59a30981189d64.","TraceId":"4ef1e838-4b59a30981189d64","ParentId":""}
+[2025-07-17 09:18:01.374 +03:00 INF] Currency rates found in cache for date: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"45af395d-5e14-4ba9-a811-5c5eb233b3d5","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE4V6J2R4HT:00000005","RequestPath":"/api/Currency","SpanId":"|4ef1e838-4b59a30981189d64.","TraceId":"4ef1e838-4b59a30981189d64","ParentId":""}
+[2025-07-17 10:55:50.560 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 10:55:50.693 +03:00 FTL] Application terminated unexpectedly {}
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICbrService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CbrService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CbrService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICbrService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CbrService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CbrService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CbrService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(IEnumerable`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.DefaultServiceProviderFactory.CreateServiceProvider(IServiceCollection containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Sberkorus.Cbr.Program.Main(String[] args) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Program.cs:line 28
+[2025-07-17 10:57:54.082 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 10:57:54.339 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 10:57:54.346 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 10:57:54.347 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 10:57:54.347 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 10:57:54.348 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 10:58:04.446 +03:00 ERR] An unhandled exception has occurred while executing the request. {"EventId":{"Id":1,"Name":"UnhandledException"},"SourceContext":"Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware","RequestId":"0HNE50UHFR3AI:00000005","RequestPath":"/api/Currency","SpanId":"|e7c4ed54-4c9830ed0673b774.","TraceId":"e7c4ed54-4c9830ed0673b774","ParentId":""}
+System.ArgumentNullException: Value cannot be null. (Parameter 'uriString')
+   at System.Uri..ctor(String uriString)
+   at Sberkorus.Cbr.Extensions.ServiceCollectionExtensions.<>c.<AddCbrApiService>b__1_0(IServiceProvider sp, HttpClient client) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Extensions\ServiceCollectionExtensions.cs:line 41
+   at Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.<>c__DisplayClass1_1.<ConfigureHttpClient>b__2(HttpClient client)
+   at Microsoft.Extensions.Http.DefaultHttpClientFactory.CreateClient(String name)
+   at Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.<>c__DisplayClass12_0`2.<AddTypedClientCore>b__0(IServiceProvider s)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite singletonCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[2025-07-17 10:58:21.675 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:00:23.922 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:00:24.189 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:00:24.198 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:00:24.200 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:00:24.201 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:00:24.203 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:00:31.713 +03:00 ERR] An unhandled exception has occurred while executing the request. {"EventId":{"Id":1,"Name":"UnhandledException"},"SourceContext":"Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware","RequestId":"0HNE50VU58I73:00000005","RequestPath":"/api/Currency","SpanId":"|8fb51b62-4a03d8dc14cb767e.","TraceId":"8fb51b62-4a03d8dc14cb767e","ParentId":""}
+System.ArgumentNullException: Value cannot be null. (Parameter 'uriString')
+   at System.Uri..ctor(String uriString)
+   at Sberkorus.Cbr.Extensions.ServiceCollectionExtensions.<>c.<AddCbrApiService>b__1_0(IServiceProvider sp, HttpClient client) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Extensions\ServiceCollectionExtensions.cs:line 41
+   at Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.<>c__DisplayClass1_1.<ConfigureHttpClient>b__2(HttpClient client)
+   at Microsoft.Extensions.Http.DefaultHttpClientFactory.CreateClient(String name)
+   at Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.<>c__DisplayClass12_0`2.<AddTypedClientCore>b__0(IServiceProvider s)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite singletonCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+[2025-07-17 11:01:48.064 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:01:54.986 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:01:55.890 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:01:55.897 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:01:55.899 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:01:55.900 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:01:55.902 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:02:44.355 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:02:45.136 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:02:45.143 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:02:45.145 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:02:45.146 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:02:45.147 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:02:57.919 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=481 {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000005","RequestPath":"/api/Currency","SpanId":"|f7494377-4fc680836234d5a7.","TraceId":"f7494377-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:02:57.929 +03:00 INF] Запрос курсов валют на дату: "2025-07-17T00:00:00.0000000+03:00", код валюты: 481 {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000005","RequestPath":"/api/Currency","SpanId":"|f7494377-4fc680836234d5a7.","TraceId":"f7494377-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:02:57.957 +03:00 DBG] Cache hit for key: currency_rates_20250717 {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000005","RequestPath":"/api/Currency","SpanId":"|f7494377-4fc680836234d5a7.","TraceId":"f7494377-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:02:58.117 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000005","RequestPath":"/api/Currency","SpanId":"|f7494377-4fc680836234d5a7.","TraceId":"f7494377-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:02:58.122 +03:00 WRN] Currency with code 481 not found for date "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000005","RequestPath":"/api/Currency","SpanId":"|f7494377-4fc680836234d5a7.","TraceId":"f7494377-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:03:12.003 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=481 {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000007","RequestPath":"/api/Currency","SpanId":"|f7494378-4fc680836234d5a7.","TraceId":"f7494378-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:03:12.009 +03:00 INF] Запрос курсов валют на дату: "2025-07-17T00:00:00.0000000+03:00", код валюты: 481 {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000007","RequestPath":"/api/Currency","SpanId":"|f7494378-4fc680836234d5a7.","TraceId":"f7494378-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:03:12.016 +03:00 DBG] Cache hit for key: currency_rates_20250717 {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000007","RequestPath":"/api/Currency","SpanId":"|f7494378-4fc680836234d5a7.","TraceId":"f7494378-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:03:12.022 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000007","RequestPath":"/api/Currency","SpanId":"|f7494378-4fc680836234d5a7.","TraceId":"f7494378-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:03:12.026 +03:00 WRN] Currency with code 481 not found for date "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"47593d16-f994-4cbb-95a3-9b3c464b3003","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51183VFS1:00000007","RequestPath":"/api/Currency","SpanId":"|f7494378-4fc680836234d5a7.","TraceId":"f7494378-4fc680836234d5a7","ParentId":""}
+[2025-07-17 11:03:29.178 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:03:29.421 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:03:29.428 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:03:29.429 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:03:29.430 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:03:29.431 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:04:24.911 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=840 {"ActionId":"692c1e28-3f8c-47a6-9014-49cab6ff1cb4","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE511LCE1TF:00000001","RequestPath":"/api/Currency","SpanId":"|7d788504-4527789ffabeed8f.","TraceId":"7d788504-4527789ffabeed8f","ParentId":""}
+[2025-07-17 11:04:24.921 +03:00 INF] Запрос курсов валют на дату: "2025-07-17T00:00:00.0000000+03:00", код валюты: 840 {"ActionId":"692c1e28-3f8c-47a6-9014-49cab6ff1cb4","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE511LCE1TF:00000001","RequestPath":"/api/Currency","SpanId":"|7d788504-4527789ffabeed8f.","TraceId":"7d788504-4527789ffabeed8f","ParentId":""}
+[2025-07-17 11:04:24.938 +03:00 DBG] Cache hit for key: currency_rates_20250717 {"ActionId":"692c1e28-3f8c-47a6-9014-49cab6ff1cb4","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE511LCE1TF:00000001","RequestPath":"/api/Currency","SpanId":"|7d788504-4527789ffabeed8f.","TraceId":"7d788504-4527789ffabeed8f","ParentId":""}
+[2025-07-17 11:04:25.043 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"692c1e28-3f8c-47a6-9014-49cab6ff1cb4","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE511LCE1TF:00000001","RequestPath":"/api/Currency","SpanId":"|7d788504-4527789ffabeed8f.","TraceId":"7d788504-4527789ffabeed8f","ParentId":""}
+[2025-07-17 11:04:30.442 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:13:00.400 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:13:00.785 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:13:00.792 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:13:00.794 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:13:00.795 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:13:00.797 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:13:16.628 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=840 {"ActionId":"c6e3b6c4-07a6-4aaf-a7de-cea8fed3d63b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE516VIPKTO:00000005","RequestPath":"/api/Currency","SpanId":"|2980f14e-42d8969a73a7f566.","TraceId":"2980f14e-42d8969a73a7f566","ParentId":""}
+[2025-07-17 11:13:16.639 +03:00 INF] Запрос курсов валют на дату: "2025-07-17T00:00:00.0000000+03:00", код валюты: 840 {"ActionId":"c6e3b6c4-07a6-4aaf-a7de-cea8fed3d63b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE516VIPKTO:00000005","RequestPath":"/api/Currency","SpanId":"|2980f14e-42d8969a73a7f566.","TraceId":"2980f14e-42d8969a73a7f566","ParentId":""}
+[2025-07-17 11:13:16.655 +03:00 DBG] Cache hit for key: currency_rates_20250717 {"ActionId":"c6e3b6c4-07a6-4aaf-a7de-cea8fed3d63b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE516VIPKTO:00000005","RequestPath":"/api/Currency","SpanId":"|2980f14e-42d8969a73a7f566.","TraceId":"2980f14e-42d8969a73a7f566","ParentId":""}
+[2025-07-17 11:13:16.778 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"c6e3b6c4-07a6-4aaf-a7de-cea8fed3d63b","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE516VIPKTO:00000005","RequestPath":"/api/Currency","SpanId":"|2980f14e-42d8969a73a7f566.","TraceId":"2980f14e-42d8969a73a7f566","ParentId":""}
+[2025-07-17 11:18:59.292 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:04.225 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:19:04.463 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:04.472 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:04.473 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:04.474 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:04.476 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:11.776 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=840 {"ActionId":"6caac86a-7e51-441a-9a10-1cb26407d24c","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AC1E3M7:00000005","RequestPath":"/api/Currency","SpanId":"|a82aa380-401fe8e0b50c1448.","TraceId":"a82aa380-401fe8e0b50c1448","ParentId":""}
+[2025-07-17 11:19:11.786 +03:00 INF] Запрос курсов валют на дату: "2025-07-17T00:00:00.0000000+03:00", код валюты: 840 {"ActionId":"6caac86a-7e51-441a-9a10-1cb26407d24c","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AC1E3M7:00000005","RequestPath":"/api/Currency","SpanId":"|a82aa380-401fe8e0b50c1448.","TraceId":"a82aa380-401fe8e0b50c1448","ParentId":""}
+[2025-07-17 11:19:11.801 +03:00 DBG] Cache hit for key: currency_rates_20250717 {"ActionId":"6caac86a-7e51-441a-9a10-1cb26407d24c","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AC1E3M7:00000005","RequestPath":"/api/Currency","SpanId":"|a82aa380-401fe8e0b50c1448.","TraceId":"a82aa380-401fe8e0b50c1448","ParentId":""}
+[2025-07-17 11:19:11.906 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"6caac86a-7e51-441a-9a10-1cb26407d24c","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AC1E3M7:00000005","RequestPath":"/api/Currency","SpanId":"|a82aa380-401fe8e0b50c1448.","TraceId":"a82aa380-401fe8e0b50c1448","ParentId":""}
+[2025-07-17 11:19:37.754 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:53.071 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 11:19:53.344 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:53.352 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:53.354 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:53.355 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:19:53.356 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 11:20:01.646 +03:00 INF] Currency rates request: Date="2025-07-17T00:00:00.0000000+03:00", CurrencyCode=840 {"ActionId":"a9b3a024-f914-4390-a38d-12083cdbaf60","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AQJB3TE:00000001","RequestPath":"/api/Currency","SpanId":"|d55dac58-449d7c1dc225bc4f.","TraceId":"d55dac58-449d7c1dc225bc4f","ParentId":""}
+[2025-07-17 11:20:01.658 +03:00 INF] Запрос курсов валют на дату: "2025-07-17T00:00:00.0000000+03:00", код валюты: 840 {"ActionId":"a9b3a024-f914-4390-a38d-12083cdbaf60","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AQJB3TE:00000001","RequestPath":"/api/Currency","SpanId":"|d55dac58-449d7c1dc225bc4f.","TraceId":"d55dac58-449d7c1dc225bc4f","ParentId":""}
+[2025-07-17 11:20:01.664 +03:00 ERR] Unexpected error occurred while processing currency rates request {"ActionId":"a9b3a024-f914-4390-a38d-12083cdbaf60","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE51AQJB3TE:00000001","RequestPath":"/api/Currency","SpanId":"|d55dac58-449d7c1dc225bc4f.","TraceId":"d55dac58-449d7c1dc225bc4f","ParentId":""}
+System.Exception: Тест тестович
+   at Sberkorus.Cbr.Application.Services.CurrencyService.GetCurrencyRatesAsync(DateTime date, Nullable`1 currencyCode, CancellationToken cancellationToken) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Application\Services\CurrencyService.cs:line 32
+   at Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates(Nullable`1 date, Nullable`1 currencyCode, CancellationToken cancellationToken) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\API\Controllers\CurrencyController.cs:line 36
+[2025-07-17 11:20:13.983 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:35:38.447 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 12:35:38.707 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:35:38.714 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:35:38.716 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:35:38.717 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:35:38.718 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:35:46.757 +03:00 INF] Запрос курсов валют: Дата="2025-07-17T00:00:00.0000000+03:00", Цифровой код валюты=840 {"ActionId":"120e058c-c7fb-43d4-9a69-8cc32c62ea9e","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ1:00000005","RequestPath":"/api/Currency","SpanId":"|362be25f-47d448d6ea27c479.","TraceId":"362be25f-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:46.769 +03:00 INF] Запрос курсов валют на дату: 2025-07-17, ISO цифровой код валюты: 840 {"ActionId":"120e058c-c7fb-43d4-9a69-8cc32c62ea9e","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ1:00000005","RequestPath":"/api/Currency","SpanId":"|362be25f-47d448d6ea27c479.","TraceId":"362be25f-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:46.785 +03:00 DBG] Значение получено из кэша по ключу: currency_rates_20250717 {"ActionId":"120e058c-c7fb-43d4-9a69-8cc32c62ea9e","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ1:00000005","RequestPath":"/api/Currency","SpanId":"|362be25f-47d448d6ea27c479.","TraceId":"362be25f-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:46.915 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"120e058c-c7fb-43d4-9a69-8cc32c62ea9e","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ1:00000005","RequestPath":"/api/Currency","SpanId":"|362be25f-47d448d6ea27c479.","TraceId":"362be25f-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:46.922 +03:00 INF] Успешно возвращены курсы валют на дату "2025-07-17T00:00:00.0000000+03:00". Количество записей: 1 {"ActionId":"120e058c-c7fb-43d4-9a69-8cc32c62ea9e","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ1:00000005","RequestPath":"/api/Currency","SpanId":"|362be25f-47d448d6ea27c479.","TraceId":"362be25f-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:55.655 +03:00 INF] Запрос курсов валют: Дата="2025-07-17T00:00:00.0000000+03:00", Символьный код валюты=USD {"ActionId":"003f8412-f847-4ca4-832b-84d2f08d1077","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRatesByCharCode (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ2:00000001","RequestPath":"/api/Currency/byCharCode","SpanId":"|362be260-47d448d6ea27c479.","TraceId":"362be260-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:55.661 +03:00 INF] Запрос курсов валют на дату: 2025-07-17, ISO символьный код валюты: USD {"ActionId":"003f8412-f847-4ca4-832b-84d2f08d1077","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRatesByCharCode (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ2:00000001","RequestPath":"/api/Currency/byCharCode","SpanId":"|362be260-47d448d6ea27c479.","TraceId":"362be260-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:55.668 +03:00 DBG] Значение получено из кэша по ключу: currency_rates_20250717 {"ActionId":"003f8412-f847-4ca4-832b-84d2f08d1077","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRatesByCharCode (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ2:00000001","RequestPath":"/api/Currency/byCharCode","SpanId":"|362be260-47d448d6ea27c479.","TraceId":"362be260-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:55.673 +03:00 INF] Курсы валют найдены в кэше для даты: "2025-07-17T00:00:00.0000000+03:00" {"ActionId":"003f8412-f847-4ca4-832b-84d2f08d1077","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRatesByCharCode (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ2:00000001","RequestPath":"/api/Currency/byCharCode","SpanId":"|362be260-47d448d6ea27c479.","TraceId":"362be260-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:35:55.678 +03:00 INF] Успешно возвращены курсы валют на дату "2025-07-17T00:00:00.0000000+03:00". Количество записей: 1 {"ActionId":"003f8412-f847-4ca4-832b-84d2f08d1077","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRatesByCharCode (Sberkorus.Cbr)","RequestId":"0HNE52L56DTQ2:00000001","RequestPath":"/api/Currency/byCharCode","SpanId":"|362be260-47d448d6ea27c479.","TraceId":"362be260-47d448d6ea27c479","ParentId":""}
+[2025-07-17 12:36:04.743 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:39:36.056 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 12:39:36.314 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:39:36.320 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:39:36.322 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:39:36.323 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:39:36.325 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:39:44.816 +03:00 INF] Запрос курсов валют: Дата="2025-07-17T00:00:00.0000000+03:00", Цифровой код валюты=840 {"ActionId":"01dae8eb-f9cb-403b-bec8-dc8840df94f7","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52NC0IQ0G:00000001","RequestPath":"/api/Currency/byNumCode","SpanId":"|f249a7e-4c1f9db25d1af1fa.","TraceId":"f249a7e-4c1f9db25d1af1fa","ParentId":""}
+[2025-07-17 12:39:44.828 +03:00 INF] Запрос курсов валют на дату: 2025-07-17, ISO цифровой код валюты: 840 {"ActionId":"01dae8eb-f9cb-403b-bec8-dc8840df94f7","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52NC0IQ0G:00000001","RequestPath":"/api/Currency/byNumCode","SpanId":"|f249a7e-4c1f9db25d1af1fa.","TraceId":"f249a7e-4c1f9db25d1af1fa","ParentId":""}
+[2025-07-17 12:39:44.837 +03:00 ERR] Возникло исключение: Test {"RequestId":"0HNE52NC0IQ0G:00000001","RequestPath":"/api/Currency/byNumCode","SpanId":"|f249a7e-4c1f9db25d1af1fa.","TraceId":"f249a7e-4c1f9db25d1af1fa","ParentId":""}
+System.Exception: Test
+   at Sberkorus.Cbr.Application.Services.CurrencyService.GetCurrencyRatesAsync(DateTime date, Nullable`1 currencyNumCode, CancellationToken cancellationToken) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Application\Services\CurrencyService.cs:line 47
+   at Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates(Nullable`1 date, Nullable`1 currencyCode, CancellationToken cancellationToken) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\API\Controllers\CurrencyController.cs:line 51
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Sberkorus.Cbr.API.Middleware.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\API\Middleware\ExceptionHandlingMiddleware.cs:line 31
+[2025-07-17 12:41:02.197 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:41:06.260 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 12:41:06.528 +03:00 INF] Now listening on: https://localhost:5001 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:41:06.537 +03:00 INF] Now listening on: http://localhost:5000 {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:41:06.538 +03:00 INF] Application started. Press Ctrl+C to shut down. {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:41:06.540 +03:00 INF] Hosting environment: Development {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:41:06.541 +03:00 INF] Content root path: D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr {"SourceContext":"Microsoft.Hosting.Lifetime"}
+[2025-07-17 12:41:14.332 +03:00 INF] Запрос курсов валют: Дата="2025-07-17T00:00:00.0000000+03:00", Цифровой код валюты=840 {"ActionId":"0f97ee24-d3ef-473d-bba1-da404ccae271","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52O6TUASQ:00000001","RequestPath":"/api/Currency/byNumCode","SpanId":"|97755aad-41bf812a166c3c44.","TraceId":"97755aad-41bf812a166c3c44","ParentId":""}
+[2025-07-17 12:41:14.344 +03:00 INF] Запрос курсов валют на дату: 2025-07-17, ISO цифровой код валюты: 840 {"ActionId":"0f97ee24-d3ef-473d-bba1-da404ccae271","ActionName":"Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates (Sberkorus.Cbr)","RequestId":"0HNE52O6TUASQ:00000001","RequestPath":"/api/Currency/byNumCode","SpanId":"|97755aad-41bf812a166c3c44.","TraceId":"97755aad-41bf812a166c3c44","ParentId":""}
+[2025-07-17 12:41:14.354 +03:00 ERR] Возникло исключение: Test {"RequestId":"0HNE52O6TUASQ:00000001","RequestPath":"/api/Currency/byNumCode","SpanId":"|97755aad-41bf812a166c3c44.","TraceId":"97755aad-41bf812a166c3c44","ParentId":""}
+System.Exception: Test
+   at Sberkorus.Cbr.Application.Services.CurrencyService.GetCurrencyRatesAsync(DateTime date, Nullable`1 currencyNumCode, CancellationToken cancellationToken) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\Application\Services\CurrencyService.cs:line 47
+   at Sberkorus.Cbr.API.Controllers.CurrencyController.GetCurrencyRates(Nullable`1 date, Nullable`1 currencyCode, CancellationToken cancellationToken) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\API\Controllers\CurrencyController.cs:line 51
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Sberkorus.Cbr.API.Middleware.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in D:\Source\Repos\Git\CbrTest\Sberkorus.Cbr\Sberkorus.Cbr\API\Middleware\ExceptionHandlingMiddleware.cs:line 31
+[2025-07-17 12:41:19.760 +03:00 INF] Application is shutting down... {"SourceContext":"Microsoft.Hosting.Lifetime"}
