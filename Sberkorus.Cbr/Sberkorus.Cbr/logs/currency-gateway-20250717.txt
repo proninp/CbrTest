@@ -1,0 +1,43 @@
+[2025-07-17 07:44:53.030 +03:00 INF] Starting Currency Gateway API {}
+[2025-07-17 07:44:53.239 +03:00 FTL] Application terminated unexpectedly {}
+System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICacheService Lifetime: Transient ImplementationType: Sberkorus.Cbr.Infrastructure.Services.RedisCacheService': Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.) (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICacheService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Infrastructure.Services.RedisCacheService': Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.) (Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.)
+ ---> System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICacheService Lifetime: Transient ImplementationType: Sberkorus.Cbr.Infrastructure.Services.RedisCacheService': Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(IServiceCollection services, ServiceProviderOptions options)
+   at Microsoft.Extensions.DependencyInjection.DefaultServiceProviderFactory.CreateServiceProvider(IServiceCollection containerBuilder)
+   at Microsoft.Extensions.Hosting.Internal.ServiceFactoryAdapter`1.CreateServiceProvider(Object containerBuilder)
+   at Microsoft.Extensions.Hosting.HostBuilder.CreateServiceProvider()
+   at Microsoft.Extensions.Hosting.HostBuilder.Build()
+   at Sberkorus.Cbr.Program.Main(String[] args) in D:\Source\Repos\Tests\Sberkorus.Cbr\Sberkorus.Cbr\Program.cs:line 29
+ ---> (Inner Exception #1) System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICacheService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Infrastructure.Services.RedisCacheService': Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'Serilog.ILogger' while attempting to activate 'Sberkorus.Cbr.Infrastructure.Services.RedisCacheService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)<---
+
+ ---> (Inner Exception #2) System.InvalidOperationException: Error while validating the service descriptor 'ServiceType: Sberkorus.Cbr.Domain.Interfaces.ICurrencyService Lifetime: Scoped ImplementationType: Sberkorus.Cbr.Application.Services.CurrencyService': Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+ ---> System.InvalidOperationException: Unable to resolve service for type 'System.Net.Http.HttpClient' while attempting to activate 'Sberkorus.Cbr.Application.Services.CurrencyService'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(ResultCache lifetime, ServiceIdentifier serviceIdentifier, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, ServiceIdentifier serviceIdentifier, CallSiteChain callSiteChain, Int32 slot)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.GetCallSite(ServiceDescriptor serviceDescriptor, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.ValidateService(ServiceDescriptor descriptor)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider..ctor(ICollection`1 serviceDescriptors, ServiceProviderOptions options)<---
+
